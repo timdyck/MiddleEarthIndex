@@ -169,7 +169,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	public Cursor searchResult(String searchKey)
 	{
 		//Opposite of elegant.  Could figure out collations one day
-				String query = "SELECT DISTINCT Name, Description FROM MiddleEarthIndex WHERE replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace( lower(Name), 'á','a'), 'ã','a'), 'â','a'), 'ä', 'a'), 'é','e'), 'ë', 'e'), 'ê','e'), 'í','i'),'ó','o') ,'õ','o') ,'ô','o'),'ú','u'), 'û', 'u'), 'ç','c') LIKE '%" + 
+				String query = "SELECT DISTINCT Name, Description FROM MiddleEarthIndex WHERE replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace( lower(Name), 'Ã ','a'), 'Ã¡','a'), 'Ã¢','a'), 'Ã¤', 'a'), 'Ã¨','e'), 'Ã©', 'e'), 'Ãª','e'), 'Ã«','i'),'Ã³','o') ,'Ã´','o') ,'Ã¶','o'),'Ãº','u'), 'Ã»', 'u'), 'Ã§','c') LIKE '%" + 
 								searchKey + 
 								"%'";
 		

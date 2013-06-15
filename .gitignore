@@ -1,1 +1,12 @@
+*.iml
+*.iws
+*.ipr
+.idea/
+.gradle/
+local.properties
 
+*/build/
+
+*~
+*.swp
+gen/com/dyck/tim/middle/earth/index/Manifest.java

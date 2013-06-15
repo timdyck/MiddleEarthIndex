@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/earendil"
+    android:padding="@android:dimen/app_icon_size" >
+
+    <TextView
+        android:id="@+id/entryoftheday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#BBE6E6FA"
+        android:text="Entry of the Day: "
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/entryTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#BBE6E6FA"
+        android:textColor="#000000"
+        android:layout_margin="10dp"
+        android:textSize="20sp" />
+	    
+    <TextView
+        android:id="@+id/entryDescription"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="1dp"
+        android:background="#BBE6E6FA"
+        android:maxLines="1000"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+</LinearLayout>

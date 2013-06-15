@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="app_name">Middle Earth Index</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Middle Earth Index</string>
+    <string name="title_activity_characters">CharactersActivity</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="title_activity_description">DescriptionActivity</string>
+    <string name="title_activity_places">PlacesActivity</string>
+    <string name="title_activity_miscellaneous">MiscellaneousActivity</string>
+    <string name="list_str">List</string>
+    <string name="miscList_str">Miscellaneous</string>
+    <string name="raceList_str">Races</string>
+    <string name="placeList_str">Places</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+</resources>

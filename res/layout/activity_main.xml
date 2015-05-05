@@ -1,15 +1,31 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/redbook">
-    <ListView
-        android:id="@+id/mainList"
-        android:fastScrollEnabled="true"
-        android:layout_margin="10dp"
-        android:background="#BBEBCA97"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-    </ListView>
+              android:background="@drawable/redbook"
+              android:baselineAligned="false"
+              android:orientation="vertical"
+                android:id="@+id/mainLayout">
 
-</LinearLayout> 
+    <HorizontalScrollView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:id="@+id/categoriesView"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#ffffe689"
+            android:weightSum="1"
+            android:id="@+id/categoriesLayout">
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</RelativeLayout>

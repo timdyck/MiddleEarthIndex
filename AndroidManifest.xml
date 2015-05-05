@@ -20,16 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RacesActivity" >
-        </activity>
-        <activity android:name=".activities.PlacesActivity" >
-        </activity>
-        <activity android:name=".activities.MiscellaneousActivity" >
-        </activity>
-        <activity android:name=".activities.ListActivity" >
-        </activity>
-        <activity android:name=".activities.DescriptionActivity" >
-        </activity>
     </application>
 
 </manifest>

@@ -6,26 +6,89 @@
               android:orientation="vertical"
                 android:id="@+id/mainLayout">
 
-    <HorizontalScrollView
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:id="@+id/categoriesView"
-        android:layout_alignParentBottom="true"
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="69dp"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false"
-        android:scrollbars="none">
+        android:layout_marginTop="64dp"
+        android:weightSum="1">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Middle Earth Index"
+            android:id="@+id/title"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.18"
+            android:gravity="center_vertical|center_horizontal"
             android:background="#ffffe689"
-            android:weightSum="1"
-            android:id="@+id/categoriesLayout">
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/search"
+            android:layout_alignStart="@+id/search"
+            android:layout_alignRight="@+id/search"
+            android:layout_alignEnd="@+id/search"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"/>
 
-        </LinearLayout>
-    </HorizontalScrollView>
+        <EditText
+            android:layout_width="211dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/search"
+            android:layout_gravity="center_horizontal"
+            android:text="Search..."
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="30dp">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/categoriesView"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="false"
+                android:scrollbars="none"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#ffffe689"
+                    android:weightSum="1"
+                    android:id="@+id/categoriesLayout"
+                    android:gravity="bottom">
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/contentList"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="true"
+                android:layout_alignStart="@id/categoriesView"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_below="@+id/categoriesView"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

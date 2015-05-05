@@ -1,7 +1,7 @@
 package com.dyck.tim.middle.earth.index.activities;
 
 /**
- * Created by Tim on 05/05/2015.
+ * Enumerates all the possible categories
  */
 public enum Category {
     All,

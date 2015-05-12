@@ -12,7 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.dyck.tim.middle.earth.index.R;
+import com.dyck.tim.middle.earth.index.animations.Animations;
 import com.dyck.tim.middle.earth.index.animations.CategoryAnimations;
+import com.dyck.tim.middle.earth.index.animations.ContentAnimations;
 import com.dyck.tim.middle.earth.index.animations.TitleAnimations;
 
 import java.util.ArrayList;
@@ -43,39 +45,17 @@ public class MainActivity extends Activity {
             // Add button click behaviour
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    // Move layout based on state
-                    int duration = 1000;
-                    switch (currentState) {
-                        case HOME:
-                            // Remove title
-                            TitleAnimations titleAnim = new TitleAnimations(instance);
-                            titleAnim.slideUp(duration);
-
-                            // Slide up categories
-                            CategoryAnimations categoryAnim = new CategoryAnimations(instance);
-                            categoryAnim.slideUp(duration);
-
-                            // Slide up content
-
-                            currentState = State.CONTENT;
-                            break;
-                        case CONTENT:
-                            break;
-                        case DATA:
-                            break;
-                    }
-
-                    // Populate listview with corresponding content
+                    categoryClickAnimations(instance);
                 }
             });
 
             categoriesLayout.addView(button);
         }
 
-        //Content List (For viewing purposes)
+        //Content List (For testing purposes)
         ListView content = (ListView) findViewById(R.id.contentList);
         List<String> sample = new ArrayList<String>();
-        sample.add("THis");
+        sample.add("This");
         sample.add("is");
         sample.add("a");
         sample.add("a");
@@ -93,6 +73,32 @@ public class MainActivity extends Activity {
         // Clear focus
         EditText search = (EditText) findViewById(R.id.search);
         search.clearFocus();
+    }
+
+    /**
+     * Performs animations on all of the layout pieces to transition to a new state. Note that the
+     * state only changes on category click if you are in the {@link State#HOME} state, which then
+     * transitions to the {@link State#CONTENT} state.
+     *
+     * @param instance Main activity instance
+     */
+    private void categoryClickAnimations(Activity instance) {
+        if (!currentState.equals(State.HOME)) {
+            return;
+        }
+
+        List<Animations> animations = new ArrayList<Animations>();
+        animations.add(new TitleAnimations(instance));
+        animations.add(new CategoryAnimations(instance));
+        animations.add(new ContentAnimations(instance));
+
+        int duration = 1000;
+
+        for (Animations animation : animations) {
+            animation.homeToContent(duration);
+        }
+
+        currentState = State.CONTENT;
     }
 
 }

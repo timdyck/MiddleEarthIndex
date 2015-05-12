@@ -9,7 +9,10 @@ import android.widget.TextView;
 
 import com.dyck.tim.middle.earth.index.R;
 
-public class TitleAnimations {
+/**
+ * Animations for the title card.
+ */
+public class TitleAnimations implements Animations {
 
     Activity activity;
 
@@ -17,7 +20,8 @@ public class TitleAnimations {
         this.activity = activity;
     }
 
-    public void slideUp(int duration){
+    @Override
+    public void homeToContent(int duration) {
         final LinearLayout titleLayout = (LinearLayout) activity.findViewById(R.id.titleLayout);
         final TextView title = (TextView) activity.findViewById(R.id.title);
 
@@ -42,4 +46,26 @@ public class TitleAnimations {
 
         titleLayout.startAnimation(titleAnim);
     }
+
+    @Override
+    public void contentToData(int duration) {
+
+    }
+
+    @Override
+    public void contentToHome(int duration) {
+
+    }
+
+    @Override
+    public void dataToContent(int duration) {
+
+    }
+
+    @Override
+    public void dataToHome(int duration) {
+        dataToContent(duration);
+        contentToHome(duration);
+    }
+
 }

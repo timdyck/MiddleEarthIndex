@@ -7,35 +7,48 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.dyck.tim.middle.earth.index.R;
+import com.dyck.tim.middle.earth.index.animations.CategoryAnimations;
+import com.dyck.tim.middle.earth.index.animations.TitleAnimations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@TargetApi(11)
+@TargetApi(12)
 public class MainActivity extends Activity {
 
-    @TargetApi(11)
+    @TargetApi(12)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        final MainActivity instance = this;
+
         setContentView(R.layout.activity_main);
 
         //Setup categories
-        LinearLayout categoriesLayout = (LinearLayout) findViewById(R.id.categoriesLayout);
+        final LinearLayout categoriesLayout = (LinearLayout) findViewById(R.id.categoriesLayout);
         for (Category category : Category.values()) {
             Button button = new Button(getApplicationContext());
             button.setText(category.name());
 
+            // Add button click behaviour
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    ListView content = (ListView) findViewById(R.id.contentList);
-                    content.setVisibility(View.VISIBLE);
+                    int duration = 1000;
+
+                    // Remove title
+                    TitleAnimations titleAnim = new TitleAnimations(instance);
+                    titleAnim.slideUp(duration);
+
+                    // Slide up categories
+                    CategoryAnimations categoryAnim = new CategoryAnimations(instance);
+                    categoryAnim.slideUp(duration);
                 }
             });
 
@@ -60,6 +73,9 @@ public class MainActivity extends Activity {
         ArrayAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sample);
         content.setAdapter(listAdapter);
 
+        // Clear focus
+        EditText search = (EditText) findViewById(R.id.search);
+        search.clearFocus();
     }
 
 }

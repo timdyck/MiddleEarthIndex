@@ -10,60 +10,25 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Middle Earth Index"
-            android:id="@+id/title"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.18"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="#ffffe689"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/search"
-            android:layout_alignStart="@+id/search"
-            android:layout_alignRight="@+id/search"
-            android:layout_alignEnd="@+id/search"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"/>
-
-        <EditText
-            android:layout_width="211dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/search"
-            android:layout_gravity="center_horizontal"
-            android:text="Search..."
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"/>
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:id="@+id/openingLayout">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/search"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="30dp">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/titleLayout">
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:id="@+id/categoriesView"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentStart="false"
                 android:scrollbars="none"
-                android:layout_marginRight="50dp"
-                android:layout_marginLeft="50dp"
-                >
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -87,8 +52,55 @@
                 android:layout_alignWithParentIfMissing="false"
                 android:layout_below="@+id/categoriesView"
                 android:layout_alignParentBottom="true"/>
+
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/titleLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Middle Earth Index"
+            android:id="@+id/title"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.18"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#ffffe689"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/search"
+            android:layout_alignStart="@+id/search"
+            android:layout_alignRight="@+id/search"
+            android:layout_alignEnd="@+id/search"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:layout_marginTop="60dp"
+            android:visibility="visible"/>
+
+        <EditText
+            android:layout_width="211dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/search"
+            android:layout_gravity="center_horizontal"
+            android:text="Search..."
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:focusableInTouchMode="false"
+            android:focusable="false"
+            android:inputType="text"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

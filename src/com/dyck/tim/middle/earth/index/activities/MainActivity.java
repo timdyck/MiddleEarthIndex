@@ -21,6 +21,8 @@ import java.util.List;
 @TargetApi(12)
 public class MainActivity extends Activity {
 
+    State currentState;
+
     @TargetApi(12)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class MainActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         final MainActivity instance = this;
+        currentState = State.HOME;
 
         setContentView(R.layout.activity_main);
 
@@ -40,15 +43,29 @@ public class MainActivity extends Activity {
             // Add button click behaviour
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    // Move layout based on state
                     int duration = 1000;
+                    switch (currentState) {
+                        case HOME:
+                            // Remove title
+                            TitleAnimations titleAnim = new TitleAnimations(instance);
+                            titleAnim.slideUp(duration);
 
-                    // Remove title
-                    TitleAnimations titleAnim = new TitleAnimations(instance);
-                    titleAnim.slideUp(duration);
+                            // Slide up categories
+                            CategoryAnimations categoryAnim = new CategoryAnimations(instance);
+                            categoryAnim.slideUp(duration);
 
-                    // Slide up categories
-                    CategoryAnimations categoryAnim = new CategoryAnimations(instance);
-                    categoryAnim.slideUp(duration);
+                            // Slide up content
+
+                            currentState = State.CONTENT;
+                            break;
+                        case CONTENT:
+                            break;
+                        case DATA:
+                            break;
+                    }
+
+                    // Populate listview with corresponding content
                 }
             });
 

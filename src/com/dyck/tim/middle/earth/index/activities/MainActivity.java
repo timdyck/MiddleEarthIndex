@@ -2,6 +2,7 @@ package com.dyck.tim.middle.earth.index.activities;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -16,6 +17,7 @@ import com.dyck.tim.middle.earth.index.animations.Animations;
 import com.dyck.tim.middle.earth.index.animations.CategoryAnimations;
 import com.dyck.tim.middle.earth.index.animations.ContentAnimations;
 import com.dyck.tim.middle.earth.index.animations.TitleAnimations;
+import com.dyck.tim.middle.earth.index.data.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,18 +36,38 @@ public class MainActivity extends Activity {
         final MainActivity instance = this;
         currentState = State.HOME;
 
+
+        // Initialize database
+        final DatabaseHelper database = new DatabaseHelper(instance);
+        database.openDataBase();
+
         setContentView(R.layout.activity_main);
 
         //Setup categories
         final LinearLayout categoriesLayout = (LinearLayout) findViewById(R.id.categoriesLayout);
-        for (Category category : Category.values()) {
+        for (final Category category : Category.values()) {
             Button button = new Button(getApplicationContext());
             button.setText(category.name());
 
             // Add button click behaviour
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    // Animate
                     categoryClickAnimations(instance);
+
+                    // Populate content list
+                    List<String> contentList = new ArrayList<String>();
+                    Cursor column = database.getColumn(category.name());
+
+                    for(column.moveToFirst() ; !column.isAfterLast() ; column.moveToNext()){
+                        contentList.add(column.getString(0));
+                    }
+
+                    ListView content = (ListView) findViewById(R.id.contentList);
+                    ArrayAdapter listAdapter = new ArrayAdapter<String>(
+                            instance, android.R.layout.simple_list_item_1, contentList);
+
+                    content.setAdapter(listAdapter);
                 }
             });
 
@@ -53,25 +75,6 @@ public class MainActivity extends Activity {
         }
 
         //Content List (For testing purposes)
-        ListView content = (ListView) findViewById(R.id.contentList);
-        List<String> sample = new ArrayList<String>();
-        sample.add("This");
-        sample.add("is");
-        sample.add("a");
-        sample.add("a");
-        sample.add("a");
-        sample.add("a");
-        sample.add("a");
-        sample.add("a");
-        sample.add("a");
-        sample.add("a");
-        sample.add("a");
-        sample.add("a");
-        sample.add("a");
-        sample.add("test");
-
-        ArrayAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sample);
-        content.setAdapter(listAdapter);
 
         // Clear focus
         EditText search = (EditText) findViewById(R.id.search);

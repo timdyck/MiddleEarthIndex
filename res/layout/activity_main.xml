@@ -100,7 +100,8 @@
                 android:layout_alignWithParentIfMissing="false"
                 android:layout_alignParentBottom="false"
                 android:visibility="invisible"
-                />
+                android:fastScrollAlwaysVisible="false"
+                android:fastScrollEnabled="true"/>
 
         </RelativeLayout>
 

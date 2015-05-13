@@ -47,18 +47,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             //By calling this method and empty database will be created into the default system path
             //of your application so we are gonna be able to overwrite that database with our database.
             this.getReadableDatabase();
-
             try {
-
                 copyDataBase();
-
             } catch (IOException e) {
-
                 throw new Error("Error copying database");
-
             }
         }
-
     }
 
     /**
@@ -73,19 +67,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             String myPath = DB_PATH + DB_NAME;
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-
         } catch (SQLiteException e) {
-
             //database doesn't exist yet.
-
         }
 
         if (checkDB != null) {
-
             checkDB.close();
-
         }
-
         return checkDB != null ? true : false;
     }
 
@@ -121,22 +109,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void openDataBase() throws SQLException {
 
-        if (myDataBase != null && myDataBase.isOpen())
+        if (myDataBase != null && myDataBase.isOpen()) {
             myDataBase.close();
+        }
+
         //Open the database
         String myPath = DB_PATH + DB_NAME;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-
     }
 
     @Override
     public synchronized void close() {
-
-        if (myDataBase != null)
+        if (myDataBase != null) {
             myDataBase.close();
-
+        }
         super.close();
-
     }
 
     @Override
@@ -158,6 +145,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (!type.equals("") && !type.equals("All") && !type.equals("Miscellaneous: All") && !type.equals("Places: All") && !type.equals("Races: All"))
             query += " AND Type = '" + type + "'";
+
+        query += " ORDER BY [Name]";
+
+        Cursor c = myDataBase.rawQuery(query, null);
+        return c;
+    }
+
+    public Cursor getColumn(String type) {
+        String query = "SELECT DISTINCT Name, Description FROM MiddleEarthIndex";
+
+        if (type != "" && type != "All") {
+            query += " WHERE Parent_Type = '" + type + "'";
+        }
 
         query += " ORDER BY [Name]";
 

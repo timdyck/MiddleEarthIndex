@@ -6,64 +6,13 @@
               android:orientation="vertical"
                 android:id="@+id/mainLayout">
 
-    <RelativeLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:weightSum="1"
-        android:layout_alignParentTop="true"
-        android:id="@+id/openingLayout">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/titleLayout">
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:id="@+id/categoriesView"
-                android:scrollbars="none"
-                android:layout_alignWithParentIfMissing="false"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="#ffffe689"
-                    android:weightSum="1"
-                    android:id="@+id/categoriesLayout"
-                    android:gravity="bottom">
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/contentList"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentStart="true"
-                android:layout_alignStart="@id/categoriesView"
-                android:layout_alignWithParentIfMissing="false"
-                android:layout_below="@+id/categoriesView"
-                android:layout_alignParentBottom="true"/>
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/titleLayout"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentLeft="false"
         android:layout_alignParentStart="true"
         android:nestedScrollingEnabled="true">
 
@@ -102,5 +51,45 @@
             android:inputType="text"/>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/categoriesView"
+            android:scrollbars="none"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#ffffe689"
+                android:weightSum="1"
+                android:id="@+id/categoriesLayout"
+                android:gravity="bottom">
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/contentList"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignParentBottom="false"
+            android:visibility="invisible"
+            />
+
+    </RelativeLayout>
 
 </RelativeLayout>

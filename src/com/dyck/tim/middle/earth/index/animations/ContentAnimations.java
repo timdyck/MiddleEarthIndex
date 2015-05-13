@@ -1,14 +1,13 @@
 package com.dyck.tim.middle.earth.index.animations;
 
 import android.app.Activity;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.dyck.tim.middle.earth.index.R;
 
@@ -25,23 +24,20 @@ public class ContentAnimations implements Animations {
 
     @Override
     public void homeToContent(int duration) {
-        LinearLayout titleLayout = (LinearLayout) activity.findViewById(R.id.titleLayout);
-        TextView title = (TextView) activity.findViewById(R.id.title);
-
         final EditText searchBox = (EditText) activity.findViewById(R.id.search);
-        final HorizontalScrollView categoriesView = (HorizontalScrollView)
+        final HorizontalScrollView categoriesLayout = (HorizontalScrollView)
                 activity.findViewById(R.id.categoriesView);
         final ListView contentList = (ListView) activity.findViewById(R.id.contentList);
 
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) titleLayout.getLayoutParams();
-        int offset = searchBox.getBottom() - title.getBottom() - categoriesView.getTop();
+        final int offset = searchBox.getHeight() + categoriesLayout.getHeight();
 
-        TranslateAnimation contentAnim = new TranslateAnimation(0f, 0f, 0f, -500);
+        TranslateAnimation contentAnim = new TranslateAnimation(0f, 0f, contentList.getHeight(), offset);
         contentAnim.setDuration(duration);
 
         contentAnim.setAnimationListener(new TranslateAnimation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
+                contentList.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -52,7 +48,7 @@ public class ContentAnimations implements Animations {
             public void onAnimationEnd(Animation animation) {
                 RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
                         contentList.getLayoutParams();
-                params.topMargin = searchBox.getHeight();
+                params.topMargin = offset;
                 contentList.setLayoutParams(params);
             }
         });

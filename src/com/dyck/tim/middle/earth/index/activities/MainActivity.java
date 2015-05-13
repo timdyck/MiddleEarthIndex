@@ -65,6 +65,9 @@ public class MainActivity extends Activity {
         sample.add("a");
         sample.add("a");
         sample.add("a");
+        sample.add("a");
+        sample.add("a");
+        sample.add("a");
         sample.add("test");
 
         ArrayAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sample);

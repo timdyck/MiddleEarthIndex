@@ -30,7 +30,6 @@ public class CategoryAnimations implements Animations {
         final EditText searchBox = (EditText) activity.findViewById(R.id.search);
         final HorizontalScrollView categoriesView = (HorizontalScrollView)
                 activity.findViewById(R.id.categoriesView);
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) titleLayout.getLayoutParams();
 
         int offset = searchBox.getBottom() - title.getBottom() - categoriesView.getTop();
 

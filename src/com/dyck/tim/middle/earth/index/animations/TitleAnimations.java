@@ -27,6 +27,7 @@ public class TitleAnimations implements Animations {
 
         TranslateAnimation titleAnim = new TranslateAnimation(0f, 0f, 0f, -title.getBottom());
         titleAnim.setDuration(duration);
+
         titleAnim.setAnimationListener(new TranslateAnimation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

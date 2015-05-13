@@ -52,44 +52,64 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true">
+        android:baselineAligned="false">
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/categoriesView"
-            android:scrollbars="none"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".15">
+        </FrameLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".75">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/categoriesView"
+                android:scrollbars="none"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="true">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#ffffe689"
+                    android:weightSum="1"
+                    android:id="@+id/categoriesLayout"
+                    android:gravity="center_vertical">
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <ListView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="#ffffe689"
-                android:weightSum="1"
-                android:id="@+id/categoriesLayout"
-                android:gravity="bottom">
+                android:id="@+id/contentList"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="false"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignParentBottom="false"
+                android:visibility="invisible"
+                />
 
-            </LinearLayout>
-        </HorizontalScrollView>
+        </RelativeLayout>
 
-        <ListView
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/contentList"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="false"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_alignParentBottom="false"
-            android:visibility="invisible"
-            />
+            android:layout_weight=".15">
+        </FrameLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

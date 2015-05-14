@@ -25,7 +25,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.18"
             android:gravity="center_vertical|center_horizontal"
-            android:background="#ffffe689"
+            android:background="#BBEBCA97"
             android:layout_alignParentTop="true"
             android:layout_alignLeft="@+id/search"
             android:layout_alignStart="@+id/search"
@@ -61,7 +61,8 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight=".15">
+            android:layout_weight=".15"
+            android:id="@+id/frame1">
         </FrameLayout>
 
         <RelativeLayout
@@ -83,7 +84,7 @@
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="#ffffe689"
+                    android:background="#BBEBCA97"
                     android:weightSum="1"
                     android:id="@+id/categoriesLayout"
                     android:gravity="center_vertical">
@@ -101,14 +102,16 @@
                 android:layout_alignParentBottom="false"
                 android:visibility="invisible"
                 android:fastScrollAlwaysVisible="false"
-                android:fastScrollEnabled="true"/>
+                android:fastScrollEnabled="true"
+                android:background="#BBEBCA97"/>
 
         </RelativeLayout>
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight=".15">
+            android:layout_weight=".15"
+            android:id="@+id/frame2">
         </FrameLayout>
 
     </LinearLayout>

@@ -10,11 +10,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.dyck.tim.middle.earth.index.R;
+import com.dyck.tim.middle.earth.index.activities.Transition;
 
 /**
  * Animations for the ListView containing the content.
  */
-public class ContentAnimations implements Animations {
+public class ContentAnimations implements Transition.Animations {
 
     Activity activity;
 

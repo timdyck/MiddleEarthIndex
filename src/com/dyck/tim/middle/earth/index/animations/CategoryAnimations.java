@@ -10,11 +10,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dyck.tim.middle.earth.index.R;
+import com.dyck.tim.middle.earth.index.activities.Transition;
 
 /**
  * Animations for the HorizontalScrollView containing the categories.
  */
-public class CategoryAnimations implements Animations {
+public class CategoryAnimations implements Transition.Animations {
 
     Activity activity;
 

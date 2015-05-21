@@ -107,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void openDataBase() throws SQLException {
+    public void open() throws SQLException {
 
         if (myDataBase != null && myDataBase.isOpen()) {
             myDataBase.close();

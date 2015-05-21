@@ -66,7 +66,38 @@ public class CategoryAnimations implements Transition.Animations {
 
     @Override
     public void contentToHome(int duration) {
+        final HorizontalScrollView categoriesView = (HorizontalScrollView)
+                activity.findViewById(R.id.categoriesView);
+        final RelativeLayout mainLayout = (RelativeLayout) activity.findViewById(R.id.mainLayout);
 
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+                categoriesView.getLayoutParams();
+
+        int offset = mainLayout.getHeight() - categoriesView.getHeight() - params.topMargin;
+
+        TranslateAnimation categoryAnim = new TranslateAnimation(0f, 0f, 0f, offset);
+        categoryAnim.setDuration(duration);
+
+        categoryAnim.setAnimationListener(new TranslateAnimation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+                        categoriesView.getLayoutParams();
+                params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, 1);
+                params.topMargin = 0;
+                categoriesView.setLayoutParams(params);
+            }
+        });
+
+        categoriesView.startAnimation(categoryAnim);
     }
 
     @Override

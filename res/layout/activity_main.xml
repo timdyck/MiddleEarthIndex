@@ -61,17 +61,17 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight=".15"
+            android:layout_weight=".175"
             android:id="@+id/frame1">
         </FrameLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight=".75">
+            android:layout_weight=".65">
 
             <HorizontalScrollView
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="100dp"
                 android:id="@+id/categoriesView"
                 android:scrollbars="none"
@@ -87,7 +87,7 @@
                     android:background="#BBEBCA97"
                     android:weightSum="1"
                     android:id="@+id/categoriesLayout"
-                    android:gravity="center_vertical">
+                    android:gravity="center">
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -110,7 +110,7 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight=".15"
+            android:layout_weight=".175"
             android:id="@+id/frame2">
         </FrameLayout>
 

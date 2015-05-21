@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         // Initialize database
-        database.openDataBase();
+        database.open();
 
         //Setup categories
         final LinearLayout categoriesLayout = (LinearLayout) findViewById(R.id.categoriesLayout);
@@ -76,6 +76,18 @@ public class MainActivity extends Activity {
         // Clear focus
         EditText search = (EditText) findViewById(R.id.search);
         search.clearFocus();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        database.open();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        database.close();
     }
 
     private void populateContentList(Activity instance, Category category) {

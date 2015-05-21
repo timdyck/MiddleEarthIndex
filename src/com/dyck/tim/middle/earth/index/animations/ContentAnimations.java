@@ -64,7 +64,37 @@ public class ContentAnimations implements Transition.Animations {
 
     @Override
     public void contentToHome(int duration) {
+        final EditText searchBox = (EditText) activity.findViewById(R.id.search);
+        final HorizontalScrollView categoriesLayout = (HorizontalScrollView)
+                activity.findViewById(R.id.categoriesView);
+        final ListView contentList = (ListView) activity.findViewById(R.id.contentList);
 
+        final int offset = searchBox.getHeight() + categoriesLayout.getHeight();
+
+        TranslateAnimation contentAnim = new TranslateAnimation(0f, 0f, 0f, contentList
+                .getHeight());
+        contentAnim.setDuration(duration);
+
+        contentAnim.setAnimationListener(new TranslateAnimation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+                        contentList.getLayoutParams();
+                params.topMargin = 0;
+                contentList.setLayoutParams(params);
+                contentList.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        contentList.startAnimation(contentAnim);
     }
 
     @Override

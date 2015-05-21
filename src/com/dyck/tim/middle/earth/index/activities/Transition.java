@@ -17,6 +17,8 @@ public enum Transition {
     DATA_TO_HOME(State.DATA, State.HOME),
     DATA_TO_CONTENT(State.DATA, State.CONTENT);
 
+    private final int DURATION = 1000;
+
     private final State from;
     private final State to;
 
@@ -90,9 +92,8 @@ public enum Transition {
         animations.add(new CategoryAnimations(instance));
         animations.add(new ContentAnimations(instance));
 
-        int duration = 1000;
         for (Animations animation : animations) {
-            this.performTransition(animation, duration);
+            this.performTransition(animation, DURATION);
         }
 
         return this.getTo();

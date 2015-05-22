@@ -83,7 +83,7 @@ public enum Transition {
      * @return The new current state
      */
     public State performTransitionAnimations(Activity instance, State currentState) {
-        if (currentState.equals(this.getTo())) {
+        if (!currentState.equals(this.getFrom()) || currentState.equals(this.getTo())) {
             return currentState;
         }
 

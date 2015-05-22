@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,8 +48,8 @@ public class MainActivity extends Activity {
             // Add button click behaviour
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    currentState = Transition.HOME_TO_CONTENT
-                            .performTransitionAnimations(instance, currentState);
+                        currentState = Transition.HOME_TO_CONTENT
+                                .performTransitionAnimations(instance, currentState);
 
                     populateContentList(instance, category);
                 }
@@ -58,20 +59,30 @@ public class MainActivity extends Activity {
         }
 
         // Set button click for outside of content view
-        FrameLayout sideFrame1 = (FrameLayout) findViewById(R.id.frame1);
-        FrameLayout sideFrame2 = (FrameLayout) findViewById(R.id.frame2);
-        sideFrame1.setOnClickListener(new View.OnClickListener() {
+        FrameLayout sideFrameLeft = (FrameLayout) findViewById(R.id.frameLeft);
+        FrameLayout sideFrameRight = (FrameLayout) findViewById(R.id.frameRight);
+
+        View.OnClickListener frameListener = new View.OnClickListener() {
             public void onClick(View v) {
-                currentState = Transition.CONTENT_TO_HOME
+                    currentState = Transition.CONTENT_TO_HOME
+                            .performTransitionAnimations(instance, currentState);
+            }
+        };
+
+        sideFrameLeft.setOnClickListener(frameListener);
+        sideFrameRight.setOnClickListener(frameListener);
+
+        // Set button click for list
+        ListView content = (ListView) findViewById(R.id.contentList);
+
+        AdapterView.OnItemClickListener listListener = new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                currentState = Transition.CONTENT_TO_DATA
                         .performTransitionAnimations(instance, currentState);
             }
-        });
-        sideFrame2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                currentState = Transition.CONTENT_TO_HOME
-                        .performTransitionAnimations(instance, currentState);
-            }
-        });
+        };
+
+        content.setOnItemClickListener(listListener);
 
         // Clear focus
         EditText search = (EditText) findViewById(R.id.search);

@@ -1,8 +1,10 @@
 package com.dyck.tim.middle.earth.index.animations;
 
 import android.app.Activity;
+import android.view.Gravity;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -51,7 +53,30 @@ public class TitleAnimations implements Transition.Animations {
 
     @Override
     public void contentToData(int duration) {
+        final EditText searchBox = (EditText) activity.findViewById(R.id.search);
 
+        TranslateAnimation searchAnim = new TranslateAnimation(0f, -searchBox.getLeft(), 0f, 0f);
+        searchAnim.setDuration(duration);
+
+        searchAnim.setAnimationListener(new TranslateAnimation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) searchBox
+                        .getLayoutParams();
+                params.gravity = Gravity.LEFT;
+                searchBox.setLayoutParams(params);
+            }
+        });
+
+        searchBox.startAnimation(searchAnim);
     }
 
     @Override

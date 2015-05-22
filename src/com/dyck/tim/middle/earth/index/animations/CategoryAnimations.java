@@ -61,7 +61,7 @@ public class CategoryAnimations implements Transition.Animations {
 
     @Override
     public void contentToData(int duration) {
-
+        /* Frames adjusted in ContentAnimation */
     }
 
     @Override

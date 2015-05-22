@@ -5,7 +5,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -59,20 +61,41 @@ public class ContentAnimations implements Transition.Animations {
 
     @Override
     public void contentToData(int duration) {
+        final RelativeLayout contentList = (RelativeLayout) activity.findViewById(R.id.frameMiddle);
+        FrameLayout frameLeft = (FrameLayout) activity.findViewById(R.id.frameLeft);
 
+        TranslateAnimation contentAnim = new TranslateAnimation(0f, -frameLeft.getWidth(), 0f, 0f);
+        contentAnim.setDuration(duration);
+
+        contentAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                FrameLayout frameLeft = (FrameLayout) activity.findViewById(R.id.frameLeft);
+                LinearLayout.LayoutParams leftParams = (LinearLayout.LayoutParams)
+                        frameLeft.getLayoutParams();
+
+                leftParams.weight = 0;
+                frameLeft.setLayoutParams(leftParams);
+            }
+        });
+
+        contentList.startAnimation(contentAnim);
     }
 
     @Override
     public void contentToHome(int duration) {
-        final EditText searchBox = (EditText) activity.findViewById(R.id.search);
-        final HorizontalScrollView categoriesLayout = (HorizontalScrollView)
-                activity.findViewById(R.id.categoriesView);
+        activity.findViewById(R.id.categoriesView);
         final ListView contentList = (ListView) activity.findViewById(R.id.contentList);
 
-        final int offset = searchBox.getHeight() + categoriesLayout.getHeight();
-
-        TranslateAnimation contentAnim = new TranslateAnimation(0f, 0f, 0f, contentList
-                .getHeight());
+        TranslateAnimation contentAnim = new TranslateAnimation(0f, 0f, 0f, contentList.getHeight());
         contentAnim.setDuration(duration);
 
         contentAnim.setAnimationListener(new TranslateAnimation.AnimationListener() {
